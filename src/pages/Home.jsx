@@ -71,7 +71,7 @@ const Home = () => {
             The Future of AI Memory.
           </p>
           <p className="text-gray-400 max-w-2xl mx-auto text-lg leading-relaxed">
-            A system transitioning AI from stateless models to autonomous agents with long-term, persistent memory. Powered by a secure "cognitive ledger".
+            A next-generation AI memory framework that enables intelligent agents to store, share, and evolve knowledge collaboratively beyond traditional limitations.
           </p>
           <div className="flex items-center justify-center space-x-6 pt-8">
             <button className="px-8 py-4 bg-white text-black font-semibold rounded-full hover:bg-gray-100 transition-colors flex items-center space-x-2">
