@@ -74,13 +74,15 @@ const Home = () => {
             A next-generation AI memory framework that enables intelligent agents to store, share and evolve knowledge collaboratively beyond traditional limitations.
           </p>
           <div className="flex items-center justify-center space-x-6 pt-8">
-            <button className="px-8 py-4 bg-white text-black font-semibold rounded-full hover:bg-gray-100 transition-colors flex items-center space-x-2">
+            <a
+              href="https://github.com/tejasnayak25/dacmi"
+              target="_blank"
+              rel="noreferrer"
+              className="px-8 py-4 bg-white text-black font-semibold rounded-full hover:bg-gray-100 transition-colors flex items-center space-x-2"
+            >
               <span>Get Started</span>
               <ArrowRight className="w-4 h-4" />
-            </button>
-            <button className="px-8 py-4 bg-[rgba(255,255,255,0.05)] border border-[rgba(255,255,255,0.1)] text-white font-semibold rounded-full hover:bg-[rgba(255,255,255,0.1)] transition-colors">
-              Read Report
-            </button>
+            </a>
           </div>
         </section>
 
