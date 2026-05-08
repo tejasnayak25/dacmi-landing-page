@@ -1,7 +1,7 @@
 import { useState, useRef, useEffect } from 'react';
 import { motion, useScroll, useTransform, useSpring } from 'framer-motion';
 import { Link } from 'react-router-dom';
-import { User, Users, Code, Globe, ExternalLink, Mail, Fingerprint, Sparkles, ShieldCheck, GraduationCap, Building2, Radio, Activity, ArrowRight } from 'lucide-react';
+import { User, Users, Code, Globe, ExternalLink, Mail, Fingerprint, Sparkles, Radio, Activity, ArrowRight } from 'lucide-react';
 import { cn } from '../utils/cn';
 
 const TiltCard = ({ children, className }) => {
@@ -65,9 +65,7 @@ const teamMembers = [
     color: 'from-blue-500/20 to-indigo-500/20',
     accent: 'text-blue-400',
     domain: 'Neural Orchestration',
-    sdg: { id: 'SDG 09', label: 'Innovation', icon: <Building2 className="w-3 h-3" /> },
     bio: 'Pioneering the core DACMI architecture to transition AI from session-based interactions to a lifelong cognitive fabric.',
-    stats: { weight: '0.992', pulse: 'Optimal' },
     github: "tejasnayak25"
   },
   {
@@ -77,9 +75,7 @@ const teamMembers = [
     color: 'from-purple-500/20 to-pink-500/20',
     accent: 'text-purple-400',
     domain: 'Immutable Ledgers',
-    sdg: { id: 'SDG 16', label: 'Justice', icon: <ShieldCheck className="w-3 h-3" /> },
     bio: 'Securing cognitive integrity through decentralized protocols and smart-contract based memory validation.',
-    stats: { weight: '0.985', pulse: 'Secured' },
     github: "syesh"
   },
   {
@@ -89,9 +85,7 @@ const teamMembers = [
     color: 'from-emerald-500/20 to-teal-500/20',
     accent: 'text-emerald-400',
     domain: 'Semantic Mapping',
-    sdg: { id: 'SDG 04', label: 'Education', icon: <GraduationCap className="w-3 h-3" /> },
     bio: 'Developing high-fidelity retrieval models and graph-based memory structures for explainable AI reasoning.',
-    stats: { weight: '0.978', pulse: 'High Res' },
     github: "TharunBhat"
   },
   {
@@ -101,9 +95,7 @@ const teamMembers = [
     color: 'from-rose-500/20 to-orange-500/20',
     accent: 'text-rose-400',
     domain: 'Interface Synthesis',
-    sdg: { id: 'SDG 11', label: 'Sustainability', icon: <Globe className="w-3 h-3" /> },
     bio: 'Crafting the bridge between complex autonomous systems and human-centric cognitive interaction.',
-    stats: { weight: '0.965', pulse: 'Adaptive' },
     github: "vinayaka29"
   }
 ];
@@ -201,37 +193,16 @@ const Members = () => {
                           <h3 className="text-3xl md:text-5xl font-black tracking-tighter leading-none">{member.name}</h3>
                           <p className="text-base md:text-xl font-light text-gray-500 italic tracking-tight">{member.domain}</p>
                         </div>
-
-                        <div className="flex flex-row sm:flex-col items-center sm:items-end gap-3 w-full sm:w-auto justify-between sm:justify-start">
-                          <div className="flex items-center gap-2 md:gap-3 px-3 md:px-5 py-1.5 md:py-2.5 rounded-xl md:rounded-2xl glass border-white/10 bg-white/5">
-                            {member.sdg.icon}
-                            <span className="text-[8px] md:text-[10px] font-black tracking-[0.1em] md:tracking-[0.2em] text-white/80">{member.sdg.id}</span>
-                          </div>
-                          <span className="text-[6px] md:text-[8px] uppercase tracking-[0.2em] md:tracking-[0.4em] text-gray-700 font-black">Mission Alignment</span>
-                        </div>
                       </div>
 
                       <p className="text-gray-400 text-base md:text-lg leading-relaxed font-light max-w-2xl border-l md:border-l-2 border-white/5 pl-4 md:pl-8 py-1 md:py-2">
                         {member.bio}
                       </p>
 
-                      <div className="grid grid-cols-2 md:grid-cols-4 gap-6 md:gap-8 pt-6 md:pt-8 border-t border-white/5">
-                        <div className="space-y-1">
-                          <p className="text-[8px] md:text-[9px] uppercase tracking-widest text-gray-600 font-black">Synaptic Weight</p>
-                          <span className="text-xl md:text-2xl font-black text-white">{member.stats.weight}</span>
-                        </div>
-                        <div className="space-y-1">
-                          <p className="text-[8px] md:text-[9px] uppercase tracking-widest text-gray-600 font-black">Neural Pulse</p>
-                          <div className="flex items-center gap-1.5 md:gap-2">
-                            <Activity className="w-3 md:w-3.5 h-3 md:h-3.5 text-primary" />
-                            <span className="text-xl md:text-2xl font-black text-white">{member.stats.pulse}</span>
-                          </div>
-                        </div>
-                        <div className="col-span-2 flex justify-end items-center gap-3">
-                          <a href={`https://github.com/${member.github}`} target="_blank" rel="noreferrer" className="p-2.5 md:p-3 rounded-xl md:rounded-2xl glass border-white/5 hover:border-primary/50 text-gray-500 hover:text-white transition-all shadow-lg group/btn">
-                            <Globe className="w-3.5 h-3.5 md:w-4 md:h-4" />
-                          </a>
-                        </div>
+                      <div className="flex justify-end items-center gap-3 pt-6 md:pt-8 border-t border-white/5">
+                        <a href={`https://github.com/${member.github}`} target="_blank" rel="noreferrer" className="p-2.5 md:p-3 rounded-xl md:rounded-2xl glass border-white/5 hover:border-primary/50 text-gray-500 hover:text-white transition-all shadow-lg group/btn">
+                          <Globe className="w-3.5 h-3.5 md:w-4 md:h-4" />
+                        </a>
                       </div>
                     </div>
 
