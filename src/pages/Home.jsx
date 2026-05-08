@@ -1,14 +1,17 @@
 import { useState, useEffect, useRef, useMemo } from 'react';
-import { motion, useScroll, useTransform, useSpring, AnimatePresence } from 'framer-motion';
-import { 
-  Brain, Database, Link as LinkIcon, Share2, Search, 
-  ShieldCheck, ArrowRight, Code, Network, Hexagon, 
-  Building2, GraduationCap, CheckCircle2, Zap, 
-  Activity, Globe, Lock, Cpu, Sparkles, Fingerprint,
-  Layers, Workflow, Eye, Boxes, TrendingUp,
-  Microscope, Radio, Box, Layers3, Circle, ZapOff
+import { Link } from 'react-router-dom';
+import { motion, useScroll, useTransform } from 'framer-motion';
+import {
+  Brain, Database, Share2,
+  ShieldCheck, Network,
+  Building2, GraduationCap,
+  Activity, Globe, Lock,
+  Layers, Users, Code
 } from 'lucide-react';
 import { cn } from '../utils/cn';
+import { RoadmapTimeline } from '../components/RoadmapTimeline';
+import { ArchitectureVisual } from '../components/ArchitectureVisual';
+import { MultiAgentSyncVisual } from '../components/MultiAgentSyncVisual';
 
 const TiltCard = ({ children, className }) => {
   const [rotateX, setRotateX] = useState(0);
@@ -84,7 +87,7 @@ const NeuralCoreVisual = () => {
         {nodes.map((node) => (
           <motion.div
             key={node.id}
-            animate={{ 
+            animate={{
               y: [node.y, node.y - 10, node.y],
               x: [node.x, node.x + 5, node.x]
             }}
@@ -96,7 +99,7 @@ const NeuralCoreVisual = () => {
                 <node.icon className="w-3 h-3 md:w-4 md:h-4 text-primary" />
               </div>
               <span className="text-[5px] md:text-[6px] font-mono text-white/20 uppercase tracking-widest">{node.label}</span>
-              
+
               {/* Connector Path - Adjusted for mobile sizing */}
               <svg className="absolute top-1/2 left-1/2 w-[150px] h-[150px] md:w-[300px] md:h-[300px] -translate-x-1/2 -translate-y-1/2 pointer-events-none overflow-visible opacity-30">
                 <motion.path
@@ -116,7 +119,7 @@ const NeuralCoreVisual = () => {
       </div>
 
       <div className="relative z-10 scale-90 md:scale-100">
-        <motion.div 
+        <motion.div
           animate={{ scale: [1, 1.2, 1], opacity: [0.1, 0.3, 0.1] }}
           transition={{ duration: 4, repeat: Infinity }}
           className="absolute -inset-32 bg-primary/30 blur-[80px] md:blur-[120px] rounded-full"
@@ -153,49 +156,59 @@ const Home = () => {
     offset: ["start start", "end end"]
   });
 
-  const heroOpacity = useTransform(scrollYProgress, [0, 0.15], [1, 0]);
-  const heroScale = useTransform(scrollYProgress, [0, 0.15], [1, 0.95]);
-  const heroY = useTransform(scrollYProgress, [0, 0.15], [0, -30]);
-  const heroPointerEvents = useTransform(scrollYProgress, [0, 0.15], ["auto", "none"]);
-  const heroVisibility = useTransform(scrollYProgress, [0, 0.15, 0.16], ["visible", "visible", "hidden"]);
-  const particlesOpacity = useTransform(scrollYProgress, [0, 0.1], [0.1, 0]);
+  const heroOpacity = useTransform(scrollYProgress, [0, 0.05], [1, 0]);
+  const heroScale = useTransform(scrollYProgress, [0, 0.05], [1, 0.95]);
+  const heroY = useTransform(scrollYProgress, [0, 0.05], [0, -30]);
+  const heroPointerEvents = useTransform(scrollYProgress, [0, 0.05], ["auto", "none"]);
+  const heroVisibility = useTransform(scrollYProgress, [0, 0.05, 0.06], ["visible", "visible", "hidden"]);
+  const particlesOpacity = useTransform(scrollYProgress, [0, 0.03], [0.1, 0]);
 
-  const particles = useMemo(() => [...Array(15)].map((_, i) => ({
+  const [particles] = useState(() => [...Array(15)].map((_, i) => ({
     id: i,
     left: `${Math.random() * 100}%`,
     duration: Math.random() * 15 + 10,
     delay: Math.random() * 10
-  })), []);
+  })));
 
   return (
-    <div ref={containerRef} className="relative min-h-[400vh] md:min-h-[500vh] bg-[#030303]">
-      
+    <div ref={containerRef} className="relative min-h-[400vh] md:min-h-[450vh] bg-[#030303]">
+
       <section className="sticky top-0 h-screen flex flex-col items-center justify-center overflow-hidden px-6">
-        <motion.div 
+        <motion.div
           style={{ opacity: heroOpacity, scale: heroScale, y: heroY, pointerEvents: heroPointerEvents, visibility: heroVisibility }}
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8, ease: "easeOut" }}
           className="relative z-10 text-center space-y-8 md:space-y-12 w-full"
         >
-          <motion.div
-            initial={{ opacity: 0, y: 10 }}
-            animate={{ opacity: 1, y: 0 }}
-            className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full glass border-white/5 text-[8px] md:text-[10px] font-black tracking-[0.2em] md:tracking-[0.4em] uppercase text-gray-500 mx-auto"
-          >
+          <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full glass border-white/5 text-[8px] md:text-[10px] font-black tracking-[0.2em] md:tracking-[0.4em] uppercase text-gray-500 mx-auto">
             <div className="w-1 h-1 md:w-1.5 md:h-1.5 rounded-full bg-rose-500 shadow-[0_0_8px_rgba(244,63,94,0.8)]" />
             <span>Entropy Level Critical</span>
-          </motion.div>
-          
-          <h1 className="text-5xl sm:text-7xl md:text-8xl lg:text-[10rem] font-black tracking-tighter leading-[0.9] md:leading-[0.85] uppercase">
-            Stateless <br />
-            <span className="text-white/10">Intelligence</span>
+          </div>
+
+          <h1 className="text-5xl sm:text-7xl md:text-8xl lg:text-[9rem] font-black tracking-tighter leading-[0.9] md:leading-[0.85] uppercase">
+            Agentic <br />
+            <span className="text-white/10">Memory</span>
           </h1>
-          
-          <p className="text-lg md:text-2xl font-light text-gray-500 max-w-2xl mx-auto tracking-tight leading-relaxed">
-            Every session is a blank slate. <br className="hidden sm:block" />
-            <span className="text-white italic">DACMI is the bridge across the void.</span>
-          </p>
+
+          <div className="space-y-6 md:space-y-8">
+            <p className="text-base md:text-2xl font-light text-gray-500 max-w-3xl mx-auto tracking-tight leading-relaxed">
+              Bridging the gap between ephemeral sessions and permanent intelligence. <br className="hidden sm:block" />
+              <span className="text-white italic">DACMI: The persistent cognitive bridge.</span>
+            </p>
+
+            <div className="flex flex-col sm:flex-row items-center justify-center gap-3 md:gap-8 px-6">
+              <Link to="/members" className="w-full sm:w-auto group relative px-6 md:px-12 py-3.5 md:py-6 bg-white text-black font-black text-base md:text-xl rounded-xl md:rounded-2xl overflow-hidden transition-all shadow-xl hover:scale-105 active:scale-95 text-center flex items-center justify-center gap-3">
+                <Users className="w-4 h-4 md:w-5 md:h-5" /> Personnel Registry
+              </Link>
+              <a href="https://github.com/tejasnayak25/dacmi" target="_blank" rel="noreferrer" className="w-full sm:w-auto px-6 md:px-12 py-3.5 md:py-6 glass rounded-xl md:rounded-2xl font-bold text-base md:text-xl text-white hover:bg-white/5 transition-all border-white/10 text-center flex items-center justify-center gap-3">
+                <Code className="w-4 h-4 md:w-5 md:h-5" /> GitHub
+              </a>
+            </div>
+          </div>
         </motion.div>
 
-        <motion.div 
+        <motion.div
           style={{ opacity: particlesOpacity }}
           className="absolute inset-0 z-0 pointer-events-none"
         >
@@ -211,8 +224,8 @@ const Home = () => {
         </motion.div>
       </section>
 
-      <section className="relative z-20 pt-[20vh] md:pt-[50vh] px-6 max-w-7xl mx-auto space-y-32 md:space-y-64">
-        
+      <section className="relative z-20 pt-[40vh] md:pt-[50vh] px-6 max-w-7xl mx-auto space-y-16 md:space-y-32">
+
         <div className="space-y-24 md:space-y-48">
           <div className="flex flex-col lg:flex-row gap-12 md:gap-20 items-center">
             <div className="flex-1 space-y-6 md:space-y-8">
@@ -222,11 +235,11 @@ const Home = () => {
                 </div>
                 <span className="text-primary font-black tracking-[0.2em] md:tracking-[0.3em] uppercase text-[8px] md:text-[10px]">Neural Protocol 01</span>
               </div>
-              <h2 className="text-4xl md:text-6xl lg:text-8xl font-black tracking-tighter leading-[0.9]">
-                Forging <br /><span className="neural-text">Permanent</span> Context
+              <h2 className="text-3xl md:text-5xl lg:text-6xl font-black tracking-tighter leading-[0.9]">
+                Hybrid <br /><span className="neural-text">Retrieval</span>
               </h2>
               <p className="text-gray-400 text-lg md:text-xl font-light leading-relaxed">
-                Capturing high-fidelity cognitive triplets and anchoring them in a decentralized graph.
+                Stage 05: Synchronizing Vector (FAISS) semantic search with Graph (Neo4j) conceptual relationships for high-fidelity context.
               </p>
               <div className="flex items-center gap-6 pt-4">
                 <div className="flex flex-col">
@@ -252,19 +265,19 @@ const Home = () => {
 
           <div className="flex flex-col lg:flex-row-reverse gap-12 md:gap-20 items-center">
             <div className="flex-1 space-y-6 md:space-y-8 lg:text-right">
-               <div className="flex items-center gap-3 lg:justify-end">
+              <div className="flex items-center gap-3 lg:justify-end">
                 <span className="text-secondary font-black tracking-[0.2em] md:tracking-[0.3em] uppercase text-[8px] md:text-[10px]">Neural Protocol 02</span>
                 <div className="w-8 h-8 md:w-10 md:h-10 rounded-xl md:rounded-2xl bg-secondary/10 flex items-center justify-center border border-secondary/20">
                   <Network className="w-4 h-4 md:w-5 md:h-5 text-secondary" />
                 </div>
               </div>
-              <h2 className="text-4xl md:text-6xl lg:text-8xl font-black tracking-tighter leading-[0.9]">
-                Distributed <br /><span className="text-secondary text-glow">Intelligence</span>
+              <h2 className="text-3xl md:text-5xl lg:text-6xl font-black tracking-tighter leading-[0.9]">
+                Multi-Agent <br /><span className="text-secondary text-glow">Synchronization</span>
               </h2>
               <p className="text-gray-400 text-lg md:text-xl font-light leading-relaxed">
-                Mesh-sync protocol allows autonomous agents to share memory pools across a hardened peer-to-peer network.
+                Stage 09: P2P mesh-sync protocols allowing autonomous agents to share memory pools across a hardened peer-to-peer network.
               </p>
-               <div className="flex items-center gap-6 pt-4 lg:justify-end">
+              <div className="flex items-center gap-6 pt-4 lg:justify-end">
                 <div className="flex flex-col lg:items-end">
                   <span className="text-[8px] md:text-xs font-black text-white/40 uppercase tracking-widest">Nodes</span>
                   <span className="text-xl md:text-2xl font-bold text-white">∞ Distributed</span>
@@ -278,30 +291,47 @@ const Home = () => {
             </div>
             <div className="flex-1 w-full aspect-square relative max-w-sm lg:max-w-none mx-auto overflow-hidden">
               <div className="absolute inset-0 bg-secondary/10 blur-[60px] md:blur-[120px] rounded-full" />
-              <TiltCard className="w-full h-full glass-card p-6 md:p-12 flex items-center justify-center shadow-2xl">
-                <div className="relative w-full h-full flex items-center justify-center scale-75 md:scale-100">
-                  {[...Array(3)].map((_, i) => (
-                    <motion.div
-                      key={i}
-                      animate={{ rotate: i % 2 === 0 ? 360 : -360 }}
-                      transition={{ duration: 15 + i * 10, repeat: Infinity, ease: "linear" }}
-                      className="absolute border border-white/5 rounded-full"
-                      style={{ width: `${(i + 1) * 30}%`, height: `${(i + 1) * 30}%` }}
-                    />
-                  ))}
-                  <div className="relative group">
-                    <Globe className="w-16 h-16 md:w-24 md:h-24 text-white opacity-20" />
-                    <div className="absolute inset-0 bg-secondary/10 blur-2xl rounded-full scale-150" />
-                  </div>
-                </div>
+              <TiltCard className="w-full h-full glass-card p-4 flex items-center justify-center shadow-2xl">
+                <MultiAgentSyncVisual />
               </TiltCard>
             </div>
           </div>
         </div>
 
-        <div className="space-y-16 md:space-y-24 py-12 md:py-32">
+        <div className="space-y-12 md:space-y-20 py-8 md:py-16">
           <div className="text-center space-y-4 md:space-y-6">
-             <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-white/5 border border-white/10 text-[8px] md:text-[10px] font-black tracking-[0.2em] md:tracking-[0.4em] uppercase text-gray-500 mx-auto">
+            <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-white/5 border border-white/10 text-[8px] md:text-[10px] font-black tracking-[0.2em] md:tracking-[0.4em] uppercase text-gray-500 mx-auto">
+              <Layers className="w-3 h-3" />
+              <span>Cognitive Architecture</span>
+            </div>
+            <h3 className="text-3xl md:text-6xl font-black tracking-tighter uppercase">The Hybrid Engine</h3>
+            <p className="text-gray-500 max-w-xl mx-auto text-sm md:text-base font-light">
+              Vector semantic search meets graph relationship mapping. A unified approach to digital memory.
+            </p>
+          </div>
+          <ArchitectureVisual />
+        </div>
+
+        <NeuralLine delay={0.4} />
+
+        <div className="space-y-12 md:space-y-20 py-8 md:py-16">
+          <div className="text-center space-y-4 md:space-y-6">
+            <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-white/5 border border-white/10 text-[8px] md:text-[10px] font-black tracking-[0.2em] md:tracking-[0.4em] uppercase text-gray-500 mx-auto">
+              <Activity className="w-3 h-3" />
+              <span>Project Evolution</span>
+            </div>
+            <h3 className="text-3xl md:text-6xl font-black tracking-tighter uppercase">The Neural Roadmap</h3>
+            <p className="text-gray-500 max-w-xl mx-auto text-sm md:text-base font-light">
+              From backend nucleus to autonomous cognitive refinement. 14 stages of agentic intelligence.
+            </p>
+          </div>
+
+          <RoadmapTimeline />
+        </div>
+
+        <div className="space-y-12 md:space-y-20 py-8 md:py-16">
+          <div className="text-center space-y-4 md:space-y-6">
+            <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-white/5 border border-white/10 text-[8px] md:text-[10px] font-black tracking-[0.2em] md:tracking-[0.4em] uppercase text-gray-500 mx-auto">
               <Globe className="w-3 h-3" />
               <span>Vision 2030 Alignment</span>
             </div>
@@ -310,9 +340,9 @@ const Home = () => {
 
           <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 md:gap-10">
             {[
-              { id: 'SDG 09', title: 'Industry & Innovation', desc: 'Resilient AI infrastructure via autonomous resource orchestration.', color: 'from-orange-500/20 to-red-500/20', icon: <Building2 className="w-6 h-6 md:w-8 md:h-8 text-orange-400" /> },
-              { id: 'SDG 16', title: 'Peace & Justice', desc: 'Transparent AI governance via immutable cognitive ledgers.', color: 'from-blue-500/20 to-indigo-500/20', icon: <ShieldCheck className="w-6 h-6 md:w-8 md:h-8 text-blue-400" /> },
-              { id: 'SDG 04', title: 'Quality Education', desc: 'Democratizing intelligence by providing persistent memory.', color: 'from-emerald-500/20 to-teal-500/20', icon: <GraduationCap className="w-6 h-6 md:w-8 md:h-8 text-emerald-400" /> }
+              { id: 'SDG 09', title: 'Industry & Innovation', desc: 'Resilient AI infrastructure via autonomous resource orchestration.', color: 'from-primary/20 to-primary/40', icon: <Building2 className="w-6 h-6 md:w-8 md:h-8 text-primary" /> },
+              { id: 'SDG 16', title: 'Peace & Justice', desc: 'Transparent AI governance via immutable cognitive ledgers.', color: 'from-secondary/20 to-secondary/40', icon: <ShieldCheck className="w-6 h-6 md:w-8 md:h-8 text-secondary" /> },
+              { id: 'SDG 04', title: 'Quality Education', desc: 'Democratizing intelligence by providing persistent memory.', color: 'from-accent/20 to-accent/40', icon: <GraduationCap className="w-6 h-6 md:w-8 md:h-8 text-accent" /> }
             ].map((sdg, i) => (
               <TiltCard key={i} className="glass-card p-8 md:p-12 space-y-6 md:space-y-8 group border-white/5">
                 <div className="flex justify-between items-start">
@@ -328,17 +358,45 @@ const Home = () => {
           </div>
         </div>
 
-        <section className="py-12 md:py-24 text-center relative overflow-hidden">
-          <div className="absolute inset-0 bg-primary/5 blur-[80px] md:blur-[120px] rounded-full" />
-          <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} className="relative z-10 space-y-8 md:space-y-12 max-w-4xl mx-auto">
-            <h2 className="text-4xl md:text-7xl font-black tracking-tighter leading-[0.9] md:leading-[0.85] uppercase">Become <br /><span className="neural-text">Persistent</span></h2>
-            <div className="flex flex-col sm:flex-row items-center justify-center gap-4 md:gap-8 px-6">
-              <button className="w-full sm:w-auto group relative px-8 md:px-12 py-4 md:py-6 bg-white text-black font-black text-lg md:text-xl rounded-xl md:rounded-2xl overflow-hidden transition-all shadow-xl">
-                Initiate Protocol
-              </button>
-              <button className="w-full sm:w-auto px-8 md:px-12 py-4 md:py-6 glass rounded-xl md:rounded-2xl font-bold text-lg md:text-xl text-white">
-                Research Wiki
-              </button>
+        <section className="py-24 md:py-48 text-center relative overflow-hidden">
+          <div className="absolute inset-0 bg-primary/5 blur-[120px] rounded-full" />
+
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            className="relative z-10 space-y-12 max-w-4xl mx-auto px-6"
+          >
+            {/* Visual Core */}
+            <div className="relative w-24 h-24 md:w-32 md:h-32 mx-auto">
+              <div className="absolute inset-0 bg-primary/20 blur-3xl animate-pulse" />
+              <div className="relative w-full h-full glass border-white/10 rounded-full flex items-center justify-center">
+                <Brain className="w-10 h-10 md:w-12 md:h-12 text-white/80" />
+                <motion.div
+                  animate={{ rotate: 360 }}
+                  transition={{ duration: 10, repeat: Infinity, ease: "linear" }}
+                  className="absolute -inset-4 border border-dashed border-white/10 rounded-full"
+                />
+              </div>
+            </div>
+
+            <div className="space-y-6">
+              <h2 className="text-4xl md:text-7xl font-black tracking-tighter leading-[0.9] md:leading-[0.85] uppercase">
+                Become <br />
+                <span className="neural-text">Persistent</span>
+              </h2>
+              <p className="text-gray-500 text-lg md:text-xl font-light max-w-2xl mx-auto leading-relaxed">
+                Step into the future of autonomous intelligence. <br />
+                Initialize your neural link with the DACMI protocol today.
+              </p>
+            </div>
+
+            <div className="flex flex-col sm:flex-row items-center justify-center gap-3 md:gap-8 pt-4">
+              <Link to="/members" className="w-full sm:w-auto px-10 py-4 md:py-5 bg-white text-black font-black text-base md:text-lg rounded-2xl hover:scale-105 active:scale-95 transition-transform shadow-xl text-center flex items-center justify-center gap-3">
+                <Users className="w-5 h-5 md:w-6 md:h-6" /> Personnel Registry
+              </Link>
+              <a href="https://github.com/tejasnayak25/dacmi" target="_blank" rel="noreferrer" className="w-full sm:w-auto px-10 py-4 md:py-5 glass border-white/10 text-white font-bold text-base md:text-lg rounded-2xl hover:bg-white/5 transition-colors text-center flex items-center justify-center gap-3">
+                <Code className="w-5 h-5 md:w-6 md:h-6" /> GitHub
+              </a>
             </div>
           </motion.div>
         </section>

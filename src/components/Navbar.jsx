@@ -92,11 +92,14 @@ const Navbar = () => {
                 ))}
               </div>
 
-              {/* Minimal Footer */}
               <div className="mt-auto pt-12 border-t border-white/5 flex items-center justify-between">
                 <div className="flex gap-6">
-                  <Globe className="w-5 h-5 text-gray-500 hover:text-white cursor-pointer transition-colors" />
-                  <Users className="w-5 h-5 text-gray-500 hover:text-white cursor-pointer transition-colors" />
+                  <a href="https://github.com/tejasnayak25/dacmi" target="_blank" rel="noreferrer">
+                    <Globe className="w-5 h-5 text-gray-500 hover:text-white transition-colors" />
+                  </a>
+                  <Link to="/members">
+                    <Users className="w-5 h-5 text-gray-500 hover:text-white transition-colors" />
+                  </Link>
                 </div>
                 <span className="text-[10px] font-mono text-gray-700 uppercase tracking-widest italic">v1.0.4</span>
               </div>

@@ -1,6 +1,7 @@
 import { useState, useRef, useEffect } from 'react';
 import { motion, useScroll, useTransform, useSpring } from 'framer-motion';
-import { User, Globe, ExternalLink, Mail, MessageSquare, Fingerprint, Cpu, Sparkles, Database, Network, ShieldCheck, GraduationCap, Building2, Radio, Activity, ArrowRight } from 'lucide-react';
+import { Link } from 'react-router-dom';
+import { User, Users, Code, Globe, ExternalLink, Mail, Fingerprint, Cpu, Sparkles, ShieldCheck, GraduationCap, Building2, Radio, Activity, ArrowRight } from 'lucide-react';
 import { cn } from '../utils/cn';
 
 const TiltCard = ({ children, className }) => {
@@ -277,16 +278,14 @@ const Members = () => {
               Join our decentralized mission to safeguard the future of collective autonomous intelligence.
             </p>
           </div>
-          <div className="flex flex-col sm:flex-row justify-center gap-4 md:gap-8 pt-4 md:pt-8 relative z-10 px-6">
-            <button className="w-full sm:w-auto px-8 md:px-12 py-4 md:py-6 bg-white text-black font-black text-lg md:text-xl rounded-xl md:rounded-[2rem] hover:scale-105 transition-all shadow-xl group">
-              <span className="flex items-center justify-center gap-3">
-                Initiate Onboarding
-                <ArrowRight className="w-5 h-5 md:w-6 md:h-6 group-hover:translate-x-2 transition-transform" />
-              </span>
-            </button>
-            <button className="w-full sm:w-auto px-8 md:px-12 py-4 md:py-6 glass rounded-xl md:rounded-[2rem] font-bold text-lg md:text-xl text-white hover:bg-white/5 transition-all border-white/10">
-              Technical Wiki
-            </button>
+          <div className="flex flex-col sm:flex-row justify-center gap-3 md:gap-8 pt-4 md:pt-8 relative z-10 px-6">
+            <Link to="/" className="w-full sm:w-auto px-6 md:px-12 py-3.5 md:py-6 bg-white text-black font-black text-base md:text-xl rounded-xl md:rounded-[2rem] hover:scale-105 transition-all shadow-xl group text-center flex items-center justify-center gap-3">
+              Global Blueprint
+              <ArrowRight className="w-4 h-4 md:w-6 md:h-6 group-hover:translate-x-2 transition-transform" />
+            </Link>
+            <a href="https://github.com/tejasnayak25/dacmi" target="_blank" rel="noreferrer" className="w-full sm:w-auto px-6 md:px-12 py-3.5 md:py-6 glass rounded-xl md:rounded-[2rem] font-bold text-base md:text-xl text-white hover:bg-white/5 transition-all border-white/10 text-center flex items-center justify-center gap-3">
+              <Code className="w-4 h-4 md:w-6 md:h-6" /> GitHub
+            </a>
           </div>
         </div>
 
