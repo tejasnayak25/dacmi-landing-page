@@ -24,7 +24,7 @@ export const RoadmapTimeline = () => {
   const progressPercent = (completedCount / stages.length) * 100;
 
   return (
-    <div className="relative py-12 px-6">
+    <div className="relative py-12 md:px-6">
       <div className="max-w-6xl mx-auto space-y-12 md:space-y-16">
 
         {/* Progress Overview */}
@@ -117,7 +117,7 @@ export const RoadmapTimeline = () => {
 
               {/* Status Badge */}
               {stage.status === 'current' && (
-                <div className="absolute top-0 right-0 p-4">
+                <div className="absolute md:top-0 top-2 md:right-0 right-15 p-4">
                   <div className="flex items-center gap-1.5 px-2 py-0.5 rounded-full bg-accent/20 border border-accent/30">
                     <div className="w-1 h-1 rounded-full bg-accent animate-ping" />
                     <span className="text-[7px] font-black text-accent uppercase tracking-widest">Active</span>

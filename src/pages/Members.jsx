@@ -1,7 +1,7 @@
 import { useState, useRef, useEffect } from 'react';
 import { motion, useScroll, useTransform, useSpring } from 'framer-motion';
 import { Link } from 'react-router-dom';
-import { User, Users, Code, Globe, ExternalLink, Mail, Fingerprint, Cpu, Sparkles, ShieldCheck, GraduationCap, Building2, Radio, Activity, ArrowRight } from 'lucide-react';
+import { User, Users, Code, Globe, ExternalLink, Mail, Fingerprint, Sparkles, ShieldCheck, GraduationCap, Building2, Radio, Activity, ArrowRight } from 'lucide-react';
 import { cn } from '../utils/cn';
 
 const TiltCard = ({ children, className }) => {
@@ -64,11 +64,11 @@ const teamMembers = [
     image: 'pic1.png',
     color: 'from-blue-500/20 to-indigo-500/20',
     accent: 'text-blue-400',
-    role: 'Lead Architect',
     domain: 'Neural Orchestration',
     sdg: { id: 'SDG 09', label: 'Innovation', icon: <Building2 className="w-3 h-3" /> },
     bio: 'Pioneering the core DACMI architecture to transition AI from session-based interactions to a lifelong cognitive fabric.',
-    stats: { weight: '0.992', pulse: 'Optimal' }
+    stats: { weight: '0.992', pulse: 'Optimal' },
+    github: "tejasnayak25"
   },
   {
     name: 'Swasthik Yesh',
@@ -76,11 +76,11 @@ const teamMembers = [
     image: 'pic2.png',
     color: 'from-purple-500/20 to-pink-500/20',
     accent: 'text-purple-400',
-    role: 'Blockchain Engineer',
     domain: 'Immutable Ledgers',
     sdg: { id: 'SDG 16', label: 'Justice', icon: <ShieldCheck className="w-3 h-3" /> },
     bio: 'Securing cognitive integrity through decentralized protocols and smart-contract based memory validation.',
-    stats: { weight: '0.985', pulse: 'Secured' }
+    stats: { weight: '0.985', pulse: 'Secured' },
+    github: "syesh"
   },
   {
     name: 'Tharun G Bhat',
@@ -88,11 +88,11 @@ const teamMembers = [
     image: 'pic3.png',
     color: 'from-emerald-500/20 to-teal-500/20',
     accent: 'text-emerald-400',
-    role: 'AI Researcher',
     domain: 'Semantic Mapping',
     sdg: { id: 'SDG 04', label: 'Education', icon: <GraduationCap className="w-3 h-3" /> },
     bio: 'Developing high-fidelity retrieval models and graph-based memory structures for explainable AI reasoning.',
-    stats: { weight: '0.978', pulse: 'High Res' }
+    stats: { weight: '0.978', pulse: 'High Res' },
+    github: "TharunBhat"
   },
   {
     name: 'Vinayaka U Pai',
@@ -100,11 +100,11 @@ const teamMembers = [
     image: 'pic4.png',
     color: 'from-rose-500/20 to-orange-500/20',
     accent: 'text-rose-400',
-    role: 'System Designer',
     domain: 'Interface Synthesis',
     sdg: { id: 'SDG 11', label: 'Sustainability', icon: <Globe className="w-3 h-3" /> },
     bio: 'Crafting the bridge between complex autonomous systems and human-centric cognitive interaction.',
-    stats: { weight: '0.965', pulse: 'Adaptive' }
+    stats: { weight: '0.965', pulse: 'Adaptive' },
+    github: "vinayaka29"
   }
 ];
 
@@ -175,12 +175,12 @@ const Members = () => {
 
                       <div className="absolute inset-0 flex items-center justify-center p-8 md:p-16">
                         {member.image ? (
-                          <div className="relative group/img w-32 h-32 md:w-48 md:h-48 lg:w-full lg:h-full">
+                          <div className="relative group/img w-full max-w-[240px] md:max-w-[320px] aspect-[3/4]">
                             <div className="absolute -inset-4 bg-primary/20 blur-2xl rounded-full opacity-0 group-hover/img:opacity-100 transition-opacity duration-1000" />
                             <img
                               src={member.image}
                               alt={member.name}
-                              className="w-full h-full aspect-square object-cover rounded-2xl md:rounded-[3rem] border border-white/10 grayscale group-hover:grayscale-0 transition-all duration-1000 shadow-2xl relative z-10"
+                              className="w-full h-full object-cover object-top rounded-2xl md:rounded-[3rem] border border-white/10 grayscale group-hover:grayscale-0 transition-all duration-1000 shadow-2xl relative z-10"
                               onError={(e) => {
                                 e.target.style.display = 'none';
                                 e.target.parentElement.nextSibling.style.display = 'flex';
@@ -192,25 +192,12 @@ const Members = () => {
                           <User className="w-12 h-12 md:w-24 md:h-24 text-white/5" />
                         </div>
                       </div>
-
-                      <div className="absolute bottom-4 left-4 md:bottom-8 md:left-8 flex items-center gap-2 md:gap-3">
-                        <div className="w-1.5 h-1.5 md:w-2 md:h-2 rounded-full bg-emerald-500 shadow-[0_0_10px_rgba(16,185,129,0.8)] animate-pulse" />
-                        <span className="text-[8px] md:text-[10px] font-black tracking-widest text-white/40 uppercase font-mono">Status: Connected</span>
-                      </div>
                     </div>
 
                     {/* Information Nexus */}
                     <div className="lg:w-3/5 p-6 md:p-12 space-y-8 md:space-y-10 bg-white/[0.01]">
                       <div className="flex flex-col sm:flex-row justify-between items-start gap-6">
                         <div className="space-y-3 md:space-y-4">
-                          <div className="flex items-center gap-2 md:gap-3">
-                            <div className="p-1.5 md:p-2 rounded-lg md:rounded-xl glass border-white/5 text-primary">
-                              <Cpu className="w-3 md:w-3.5 h-3 md:h-3.5" />
-                            </div>
-                            <span className={cn("text-[8px] md:text-[9px] font-black tracking-[0.2em] md:tracking-[0.4em] uppercase", member.accent)}>
-                              {member.role}
-                            </span>
-                          </div>
                           <h3 className="text-3xl md:text-5xl font-black tracking-tighter leading-none">{member.name}</h3>
                           <p className="text-base md:text-xl font-light text-gray-500 italic tracking-tight">{member.domain}</p>
                         </div>
@@ -241,11 +228,9 @@ const Members = () => {
                           </div>
                         </div>
                         <div className="col-span-2 flex justify-end items-center gap-3">
-                          {[Globe, ExternalLink, Mail].map((Icon, idx) => (
-                            <button key={idx} className="p-2.5 md:p-3 rounded-xl md:rounded-2xl glass border-white/5 hover:border-primary/50 text-gray-500 hover:text-white transition-all shadow-lg group/btn">
-                              <Icon className="w-3.5 h-3.5 md:w-4 md:h-4" />
-                            </button>
-                          ))}
+                          <a href={`https://github.com/${member.github}`} target="_blank" rel="noreferrer" className="p-2.5 md:p-3 rounded-xl md:rounded-2xl glass border-white/5 hover:border-primary/50 text-gray-500 hover:text-white transition-all shadow-lg group/btn">
+                            <Globe className="w-3.5 h-3.5 md:w-4 md:h-4" />
+                          </a>
                         </div>
                       </div>
                     </div>
@@ -280,7 +265,7 @@ const Members = () => {
           </div>
           <div className="flex flex-col sm:flex-row justify-center gap-3 md:gap-8 pt-4 md:pt-8 relative z-10 px-6">
             <Link to="/" className="w-full sm:w-auto px-6 md:px-12 py-3.5 md:py-6 bg-white text-black font-black text-base md:text-xl rounded-xl md:rounded-[2rem] hover:scale-105 transition-all shadow-xl group text-center flex items-center justify-center gap-3">
-              Global Blueprint
+              DACMI
               <ArrowRight className="w-4 h-4 md:w-6 md:h-6 group-hover:translate-x-2 transition-transform" />
             </Link>
             <a href="https://github.com/tejasnayak25/dacmi" target="_blank" rel="noreferrer" className="w-full sm:w-auto px-6 md:px-12 py-3.5 md:py-6 glass rounded-xl md:rounded-[2rem] font-bold text-base md:text-xl text-white hover:bg-white/5 transition-all border-white/10 text-center flex items-center justify-center gap-3">
