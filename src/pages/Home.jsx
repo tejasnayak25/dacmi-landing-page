@@ -199,7 +199,7 @@ const Home = () => {
 
             <div className="flex flex-col sm:flex-row items-center justify-center gap-3 md:gap-8 px-6">
               <Link to="/members" className="w-full sm:w-auto group relative px-6 md:px-12 py-3.5 md:py-6 bg-white text-black font-black text-base md:text-xl rounded-xl md:rounded-2xl overflow-hidden transition-all shadow-xl hover:scale-105 active:scale-95 text-center flex items-center justify-center gap-3">
-                <Users className="w-4 h-4 md:w-5 md:h-5" /> Personnel Registry
+                <Users className="w-4 h-4 md:w-5 md:h-5" /> Team
               </Link>
               <a href="https://github.com/tejasnayak25/dacmi" target="_blank" rel="noreferrer" className="w-full sm:w-auto px-6 md:px-12 py-3.5 md:py-6 glass rounded-xl md:rounded-2xl font-bold text-base md:text-xl text-white hover:bg-white/5 transition-all border-white/10 text-center flex items-center justify-center gap-3">
                 <Code className="w-4 h-4 md:w-5 md:h-5" /> GitHub
@@ -392,7 +392,7 @@ const Home = () => {
 
             <div className="flex flex-col sm:flex-row items-center justify-center gap-3 md:gap-8 pt-4">
               <Link to="/members" className="w-full sm:w-auto px-10 py-4 md:py-5 bg-white text-black font-black text-base md:text-lg rounded-2xl hover:scale-105 active:scale-95 transition-transform shadow-xl text-center flex items-center justify-center gap-3">
-                <Users className="w-5 h-5 md:w-6 md:h-6" /> Personnel Registry
+                <Users className="w-5 h-5 md:w-6 md:h-6" /> Team
               </Link>
               <a href="https://github.com/tejasnayak25/dacmi" target="_blank" rel="noreferrer" className="w-full sm:w-auto px-10 py-4 md:py-5 glass border-white/10 text-white font-bold text-base md:text-lg rounded-2xl hover:bg-white/5 transition-colors text-center flex items-center justify-center gap-3">
                 <Code className="w-5 h-5 md:w-6 md:h-6" /> GitHub

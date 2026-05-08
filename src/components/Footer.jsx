@@ -61,17 +61,13 @@ const Footer = () => {
                 </a>
               </div>
             </div>
-            <div className="flex items-center gap-3">
-              <div className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse" />
-              <span className="text-[10px] font-bold text-gray-600 uppercase tracking-widest">Active Cluster</span>
-            </div>
           </div>
         </div>
 
         {/* Bottom Bar */}
         <div className="pt-10 border-t border-white/5 flex flex-col md:flex-row justify-between items-center gap-6">
           <p className="text-gray-600 text-[10px] font-mono tracking-[0.3em] uppercase">
-            © 2026 DACMI. FORGING PERMANENCE.
+            © 2026 DACMI
           </p>
           <div className="flex items-center gap-8">
             <span className="text-[10px] text-white/5 font-black tracking-[0.8em] uppercase">Built for Persistence</span>
